@@ -1,0 +1,129 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import isEmpty from 'lodash/isEmpty';
+import FolderSelector from '../components/folder-selector';
+import parseBookmarks from '../util/parse-bookmarks';
+
+class Dashboard extends React.PureComponent {
+  static propTypes = {
+    addBookmark: PropTypes.func.isRequired,
+    bookmarks: PropTypes.object.isRequired,
+    deleteBookmark: PropTypes.func.isRequired,
+    deleteFolder: PropTypes.func.isRequired,
+    folders: PropTypes.object.isRequired,
+    getBookmarks: PropTypes.func.isRequired,
+    getFolders: PropTypes.func.isRequired,
+    logOut: PropTypes.func.isRequired,
+  };
+
+  state = {
+    linkToSave: {
+      href: '',
+      name: '',
+      folder: undefined,
+      errors: [],
+    },
+  };
+
+  componentDidMount = () => {
+    if (isEmpty(this.props.bookmarks)) {
+      this.props.getBookmarks();
+    }
+  };
+
+  onLogOutClick = () => {
+    this.props.logOut();
+  };
+
+  onChange = fieldName => {
+    return event => {
+      event.persist();
+      this.setState(state => ({
+        ...state,
+        linkToSave: {
+          ...state.linkToSave,
+          [fieldName]: event.target.value,
+        },
+      }));
+    };
+  };
+
+  onSubmit = event => {
+    event.preventDefault();
+
+    if (this.state.linkToSave.name && this.state.linkToSave.href) {
+      this.props.addBookmark(this.state.linkToSave);
+    } else {
+      this.setState(state => ({
+        ...state,
+        linkToSave: {
+          ...state.linkToSave,
+          errors: ['Please enter a name and a url.'],
+        },
+      }));
+    }
+  };
+
+  onDeleteBookmarkClick = (linkId, folder) => {
+    this.props.deleteBookmark(linkId, folder);
+  };
+
+  onDeleteFolderClick = folder => {
+    if (window.confirm('Deleting this folder will remove all bookmarks in it. Do you wish to continue?')) {
+      this.props.deleteFolder(folder);
+    }
+  };
+
+  render() {
+    const showBookmarks = !isEmpty(this.props.bookmarks.items);
+    const showErrors = !isEmpty(this.state.linkToSave.errors);
+    const bookmarkItems = parseBookmarks(this.props.bookmarks.items);
+
+    return (
+      <div>
+        <button onClick={this.onLogOutClick}>Sign out</button>
+        {showBookmarks && (
+          <div>
+            {bookmarkItems.map(([folder, links], index) => (
+              <div key={index}>
+                <h2>
+                  {folder} <button onClick={() => this.onDeleteFolderClick(folder)}>X</button>
+                </h2>
+                <ul>
+                  {links.map(link => (
+                    <li key={link.id}>
+                      <a href={link.href} target="_blank" rel="noopener noreferrer">
+                        {link.name}
+                      </a>
+                      <button onClick={() => this.onDeleteBookmarkClick(link.id, folder)}>X</button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
+        <form onSubmit={this.onSubmit}>
+          <label>
+            <span>Name</span>
+            <input onChange={this.onChange('name')} type="text" value={this.state.linkToSave.name} />
+          </label>
+          <label>
+            <span>Url</span>
+            <input onChange={this.onChange('href')} type="text" value={this.state.linkToSave.href} />
+          </label>
+          <FolderSelector
+            folders={this.props.folders}
+            getFolders={this.props.getFolders}
+            onChange={this.onChange}
+            selectedFolder={this.state.linkToSave.folder}
+          />
+          <button onClick={this.onSubmit}>Add bookmark</button>
+          {showErrors && <div>{this.state.linkToSave.errors}</div>}
+        </form>
+      </div>
+    );
+  }
+}
+
+export default Dashboard;

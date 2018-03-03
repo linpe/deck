@@ -1,0 +1,20 @@
+{
+  "name": "Deck",
+  "description": "Save stuff and never look at them again",
+  "version": "0.0",
+  "permissions": [
+    "activeTab"
+  ],
+  "background": {
+    "scripts": ["./static/js/save-to-deck-background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_title": "Save to Deck"
+  },
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
+  "manifest_version": 2
+}
