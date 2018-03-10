@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 import FolderSelector from '../components/folder-selector';
 import parseBookmarks from '../util/parse-bookmarks';
+import styles from './dashboard.css';
 
 class Dashboard extends React.PureComponent {
   static propTypes = {
@@ -80,8 +81,10 @@ class Dashboard extends React.PureComponent {
     const bookmarkItems = parseBookmarks(this.props.bookmarks.items);
 
     return (
-      <div>
-        <button onClick={this.onLogOutClick}>Sign out</button>
+      <div className={styles.dashboard}>
+        <header className={styles.header}>
+          <button onClick={this.onLogOutClick}>Sign out</button>
+        </header>
         {showBookmarks && (
           <div>
             {bookmarkItems.map(([folder, links], index) => (

@@ -1,0 +1,38 @@
+.suggest {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.input {
+  outline: none;
+  width: 100%;
+  height: 50px;
+  padding: 8px;
+  border: 1px solid var(--colour-light-grey);
+  background-color: var(--colour-light-grey);
+  font-size: 14px;
+  transition: border-color 150ms linear;
+}
+
+.inputOpen {
+  border: 1px solid var(--colour-secondary);
+}
+
+.suggestionsContainerOpen {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  border: 1px solid var(--colour-secondary);
+  border-top: 0;
+  background-color: var(--colour-white);
+}
+
+.suggestion {
+  cursor: pointer;
+  padding: 8px;
+}
+
+.button {
+  composes: button from './login.css';
+}

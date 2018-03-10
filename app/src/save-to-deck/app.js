@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import firebase from 'firebase';
 import Add from './components/add';
 import Login from './components/login';
+import withClickOutside from './components/with-click-outside';
+import styles from './app.css';
 
 class App extends React.PureComponent {
   static propTypes = {
@@ -20,21 +22,7 @@ class App extends React.PureComponent {
   };
 
   componentDidMount = async () => {
-    try {
-      const user = await this.getUserStatus();
-
-      if (user) {
-        this.getFolders();
-      }
-    } catch (error) {
-      this.setState(state => ({
-        ...state,
-        user: {
-          ...state.user,
-          errors: ['We had an issue trying to verify you'],
-        },
-      }));
-    }
+    this.getUserStatus();
   };
 
   getUserStatus = () => {
@@ -159,26 +147,28 @@ class App extends React.PureComponent {
       return <div>Loading...</div>;
     }
 
-    if (this.state.user.uid) {
-      return (
-        <Add
-          folders={this.state.folders.items}
-          loading={this.state.folders.loading}
-          onChange={this.onSelectChange}
-          onSubmit={this.onAddSubmit}
-          selectedFolder={this.state.selectedFolder}
-        />
-      );
-    }
-
     return (
-      <Login
-        {...this.state.login}
-        onChange={fieldName => this.onChange('login', fieldName)}
-        onSubmit={this.onLogInSubmit}
-      />
+      <div className={styles.app}>
+        <h1 className={styles.title}>Deck</h1>
+        {this.state.user.uid ? (
+          <Add
+            folders={this.state.folders.items}
+            getFolders={this.getFolders}
+            loading={this.state.folders.loading}
+            onChange={this.onSelectChange}
+            onSubmit={this.onAddSubmit}
+            selectedFolder={this.state.selectedFolder}
+          />
+        ) : (
+          <Login
+            {...this.state.login}
+            onChange={fieldName => this.onChange('login', fieldName)}
+            onSubmit={this.onLogInSubmit}
+          />
+        )}
+      </div>
     );
   }
 }
 
-export default App;
+export default withClickOutside(App);

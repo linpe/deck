@@ -3,7 +3,8 @@
   "description": "Save stuff and never look at them again",
   "version": "0.0",
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "storage"
   ],
   "background": {
     "scripts": ["./static/js/save-to-deck-background.js"],
@@ -15,6 +16,12 @@
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": ["./static/css/index.css"]
+    }
+  ],
   "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
   "manifest_version": 2
 }

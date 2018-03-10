@@ -1,0 +1,74 @@
+.inputWrapper {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.input {
+  display: block;
+  outline: none;
+  width: 100%;
+  height: 40px;
+  padding: 0 8px;
+  border: 1px solid var(--colour-light-grey);
+  background-color: var(--colour-light-grey);
+  font-size: 14px;
+  transition: border-color 150ms linear;
+}
+
+.input:focus,
+.inputFocus {
+  padding-top: 8px;
+}
+
+.input:focus {
+  border: 1px solid var(--colour-secondary);
+}
+
+.placeholder {
+  position: absolute;
+  top: 0;
+  padding-right: 8px;
+  padding-left: 8px;
+  color: var(--colour-grey);
+  line-height: 40px;
+  pointer-events: none;
+  transition: top 150ms ease-in, font-size 150ms linear;
+}
+
+.input:focus + .placeholder,
+.inputFocus + .placeholder {
+  top: -8px;
+  font-size: 9px;
+}
+
+.button {
+  display: block;
+  cursor: pointer;
+  outline: none;
+  width: 200px;
+  margin: 0 auto;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border: 0;
+  border-radius: 100px;
+  background-color: var(--colour-primary);
+  color: var(--colour-white);
+  font-size: 16px;
+  transition: background-color 250ms linear,;
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--colour-primary-light);
+}
+
+.button:active {
+  background-color: var(--colour-primary-dark);
+}
+
+.errors {
+  padding-top: 16px;
+  color: var(--colour-error);
+  font-size: 11px;
+  text-align: center;
+}
