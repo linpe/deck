@@ -144,7 +144,7 @@ class App extends React.PureComponent {
 
   render() {
     if (!this.state.user || this.state.user.loading) {
-      return <div>Loading...</div>;
+      return null;
     }
 
     return (

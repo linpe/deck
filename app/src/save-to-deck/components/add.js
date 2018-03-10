@@ -83,7 +83,7 @@ class Add extends React.PureComponent {
 
   render() {
     if (this.props.loading) {
-      return <span>Loading</span>;
+      return <div className={styles.spinner} />;
     }
 
     const inputProps = {
