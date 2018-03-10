@@ -31,6 +31,11 @@
 .suggestion {
   cursor: pointer;
   padding: 8px;
+  transition: background-color 150ms linear;
+}
+
+.suggestion:hover {
+  background-color: var(--colour-light-grey);
 }
 
 .button {
