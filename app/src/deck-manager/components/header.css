@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  background-color: var(--colour-primary);
+  color: var(--colour-white);
+}
+
+.headerInner {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.signOut {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+}

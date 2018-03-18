@@ -4,6 +4,7 @@ import isEmpty from 'lodash/isEmpty';
 import Card from '../components/card';
 import Folder from '../components/folder';
 import FolderSelector from '../components/folder-selector';
+import Header from '../components/header';
 import parseBookmarks from '../util/parse-bookmarks';
 import styles from './dashboard.css';
 
@@ -17,6 +18,7 @@ class Dashboard extends React.PureComponent {
     getBookmarks: PropTypes.func.isRequired,
     getFolders: PropTypes.func.isRequired,
     logOut: PropTypes.func.isRequired,
+    match: PropTypes.object.isRequired,
   };
 
   state = {
@@ -84,14 +86,7 @@ class Dashboard extends React.PureComponent {
 
     return (
       <div className={styles.dashboard}>
-        <header className={styles.header}>
-          <div className={styles.headerInner}>
-            <span className={styles.logo}>Deck</span>
-            <button className={styles.signOut} onClick={this.onLogOutClick}>
-              Sign out
-            </button>
-          </div>
-        </header>
+        <Header onLogOutClick={this.onLogOutClick} />
         {showBookmarks && (
           <div className={styles.body}>
             <h1 className={styles.heading}>Your deck</h1>
