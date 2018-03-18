@@ -1,0 +1,19 @@
+.body {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 88px 8px;
+}
+
+.heading {
+  margin-bottom: 64px;
+  color: var(--colour-dark-grey);
+  font-size: 38px;
+  font-weight: 200;
+}
+
+.grid {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 56px;
+}

@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 import Card from '../components/card';
+import CardList from '../components/card-list';
 import Folder from '../components/folder';
 import FolderSelector from '../components/folder-selector';
-import Header from '../components/header';
-import parseBookmarks from '../util/parse-bookmarks';
+import { parseBookmarks } from '../util/parse-bookmarks';
 import styles from './dashboard.css';
 
 class Dashboard extends React.PureComponent {
@@ -17,8 +17,6 @@ class Dashboard extends React.PureComponent {
     folders: PropTypes.object.isRequired,
     getBookmarks: PropTypes.func.isRequired,
     getFolders: PropTypes.func.isRequired,
-    logOut: PropTypes.func.isRequired,
-    match: PropTypes.object.isRequired,
   };
 
   state = {
@@ -34,10 +32,6 @@ class Dashboard extends React.PureComponent {
     if (isEmpty(this.props.bookmarks)) {
       this.props.getBookmarks();
     }
-  };
-
-  onLogOutClick = () => {
-    this.props.logOut();
   };
 
   onChange = fieldName => {
@@ -86,20 +80,16 @@ class Dashboard extends React.PureComponent {
 
     return (
       <div className={styles.dashboard}>
-        <Header onLogOutClick={this.onLogOutClick} />
         {showBookmarks && (
-          <div className={styles.body}>
-            <h1 className={styles.heading}>Your deck</h1>
-            <div className={styles.grid}>
-              {bookmarkItems.map(([folder, links], index) => {
-                if (folder !== 'Uncategorised') {
-                  return <Folder key={index} label={folder} />;
-                }
+          <CardList heading="Your deck">
+            {bookmarkItems.map(([folder, links], index) => {
+              if (folder !== 'Uncategorised') {
+                return <Folder key={index} label={folder} />;
+              }
 
-                return links.map(link => <Card {...link} key={link.id} />);
-              })}
-            </div>
-          </div>
+              return links.map(link => <Card {...link} key={link.id} />);
+            })}
+          </CardList>
         )}
         <form className={styles.actions} onSubmit={this.onSubmit}>
           <div className={styles.actionsInner}>

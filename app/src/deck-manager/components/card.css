@@ -54,8 +54,22 @@
 }
 
 .cardBody {
+  overflow-y: hidden;
+  position: relative;
   height: 176px;
   padding: 24px 16px;
+}
+
+.cardBody::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background: linear-gradient(0, #fff 8px, transparent);
 }
 
 .date {
