@@ -41,7 +41,6 @@ const withBookmarks = Component => {
       this.props.database.ref(`bookmarks/${this.props.user.uid}/${folder}`).push({
         dateAdded: new Date().toISOString(),
         href,
-        imageId: false,
         name,
       });
     };

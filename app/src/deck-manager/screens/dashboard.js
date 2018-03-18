@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
+import Card from '../components/card';
+import Folder from '../components/folder';
 import FolderSelector from '../components/folder-selector';
 import parseBookmarks from '../util/parse-bookmarks';
 import styles from './dashboard.css';
@@ -83,46 +85,46 @@ class Dashboard extends React.PureComponent {
     return (
       <div className={styles.dashboard}>
         <header className={styles.header}>
-          <button onClick={this.onLogOutClick}>Sign out</button>
+          <div className={styles.headerInner}>
+            <span className={styles.logo}>Deck</span>
+            <button className={styles.signOut} onClick={this.onLogOutClick}>
+              Sign out
+            </button>
+          </div>
         </header>
         {showBookmarks && (
-          <div>
-            {bookmarkItems.map(([folder, links], index) => (
-              <div key={index}>
-                <h2>
-                  {folder} <button onClick={() => this.onDeleteFolderClick(folder)}>X</button>
-                </h2>
-                <ul>
-                  {links.map(link => (
-                    <li key={link.id}>
-                      <a href={link.href} target="_blank" rel="noopener noreferrer">
-                        {link.name}
-                      </a>
-                      <button onClick={() => this.onDeleteBookmarkClick(link.id, folder)}>X</button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          <div className={styles.body}>
+            <h1 className={styles.heading}>Your deck</h1>
+            <div className={styles.grid}>
+              {bookmarkItems.map(([folder, links], index) => {
+                if (folder !== 'Uncategorised') {
+                  return <Folder key={index} label={folder} />;
+                }
+
+                return links.map(link => <Card {...link} key={link.id} />);
+              })}
+            </div>
           </div>
         )}
-        <form onSubmit={this.onSubmit}>
-          <label>
-            <span>Name</span>
-            <input onChange={this.onChange('name')} type="text" value={this.state.linkToSave.name} />
-          </label>
-          <label>
-            <span>Url</span>
-            <input onChange={this.onChange('href')} type="text" value={this.state.linkToSave.href} />
-          </label>
-          <FolderSelector
-            folders={this.props.folders}
-            getFolders={this.props.getFolders}
-            onChange={this.onChange}
-            selectedFolder={this.state.linkToSave.folder}
-          />
-          <button onClick={this.onSubmit}>Add bookmark</button>
-          {showErrors && <div>{this.state.linkToSave.errors}</div>}
+        <form className={styles.actions} onSubmit={this.onSubmit}>
+          <div className={styles.actionsInner}>
+            <label>
+              <span>Name</span>
+              <input onChange={this.onChange('name')} type="text" value={this.state.linkToSave.name} />
+            </label>
+            <label>
+              <span>Url</span>
+              <input onChange={this.onChange('href')} type="text" value={this.state.linkToSave.href} />
+            </label>
+            <FolderSelector
+              folders={this.props.folders}
+              getFolders={this.props.getFolders}
+              onChange={this.onChange}
+              selectedFolder={this.state.linkToSave.folder}
+            />
+            <button onClick={this.onSubmit}>Add bookmark</button>
+            {showErrors && <div>{this.state.linkToSave.errors}</div>}
+          </div>
         </form>
       </div>
     );
