@@ -6,8 +6,10 @@
   height: 328px;
   padding: 24px;
   border-radius: 8px;
+  border-top-right-radius: 0;
   background: linear-gradient(217deg, var(--colour-white), #ffebe7 82%, #ffd8cf);
   box-shadow: 0 2px 4px 0 rgba(155, 35, 8, 0.3);
+  text-decoration: none;
   transition: transform 100ms ease-out, box-shadow 150ms ease-out;
 }
 
