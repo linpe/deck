@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
+import Actions from '../components/actions';
 import Card from '../components/card';
 import CardList from '../components/card-list';
 import Folder from '../components/folder';
-import FolderSelector from '../components/folder-selector';
 import { parseBookmarks } from '../util/parse-bookmarks';
 import styles from './dashboard.css';
 
@@ -75,7 +75,6 @@ class Dashboard extends React.PureComponent {
 
   render() {
     const showBookmarks = !isEmpty(this.props.bookmarks.items);
-    const showErrors = !isEmpty(this.state.linkToSave.errors);
     const bookmarkItems = parseBookmarks(this.props.bookmarks.items);
 
     return (
@@ -91,26 +90,13 @@ class Dashboard extends React.PureComponent {
             })}
           </CardList>
         )}
-        <form className={styles.actions} onSubmit={this.onSubmit}>
-          <div className={styles.actionsInner}>
-            <label>
-              <span>Name</span>
-              <input onChange={this.onChange('name')} type="text" value={this.state.linkToSave.name} />
-            </label>
-            <label>
-              <span>Url</span>
-              <input onChange={this.onChange('href')} type="text" value={this.state.linkToSave.href} />
-            </label>
-            <FolderSelector
-              folders={this.props.folders}
-              getFolders={this.props.getFolders}
-              onChange={this.onChange}
-              selectedFolder={this.state.linkToSave.folder}
-            />
-            <button onClick={this.onSubmit}>Add bookmark</button>
-            {showErrors && <div>{this.state.linkToSave.errors}</div>}
-          </div>
-        </form>
+        <Actions
+          {...this.state.linkToSave}
+          folders={this.props.folders}
+          onChange={this.onChange}
+          onGetFolders={this.props.getFolders}
+          onSubmit={this.onSubmit}
+        />
       </div>
     );
   }
