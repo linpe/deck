@@ -5,7 +5,7 @@ import styles from './header.css';
 const Header = ({ onLogOutClick }) => (
   <header className={styles.header}>
     <div className={styles.headerInner}>
-      <span className={styles.logo}>Deck</span>
+      <p className={styles.logo}>SiteDeck</p>
       <button className={styles.signOut} onClick={onLogOutClick}>
         Sign out
       </button>

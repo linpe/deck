@@ -1,0 +1,27 @@
+.action {
+  position: relative;
+}
+
+.actionButton {
+  composes: buttonReset from '../../util/button-reset.css';
+  outline: none;
+  font-weight: 'Work Sans', sans-serif;
+  font-size: 18px;
+  transition: color 150ms linear;
+}
+
+.actionButton:hover {
+  color: var(--colour-primary);
+}
+
+.popout {
+  position: absolute;
+  bottom: calc(100% + 16px);
+  left: 50%;
+  width: 400px;
+  padding: 32px;
+  border-radius: 8px;
+  background-color: var(--colour-white);
+  box-shadow: 0 2px 4px 0 rgba(155, 35, 8, 0.3);
+  transform: translateX(-50%);
+}

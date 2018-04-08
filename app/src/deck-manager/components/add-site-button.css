@@ -1,0 +1,47 @@
+.input {
+  display: block; outline: none;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 8px;
+  padding: 8px;
+  border: 1px solid var(--colour-light-grey);
+  background-color: var(--colour-light-grey);
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 150ms linear;
+}
+
+.input::placeholder {
+  color: var(--colour-grey);
+}
+
+.input:focus {
+  border: 1px solid var(--colour-secondary);
+}
+
+.button {
+  cursor: pointer;
+  outline: none;
+  margin: 0 auto;
+  padding: 14px 28px;
+  border: 0;
+  border-radius: 100px;
+  background-color: var(--colour-primary);
+  color: var(--colour-white);
+  font-size: 16px;
+  transition: background-color 250ms linear,;
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--colour-primary-light);
+}
+
+.button:active {
+  background-color: var(--colour-primary-dark);
+}
+
+.error {
+  margin-top: 8px;
+  color: var(--colour-error);
+}

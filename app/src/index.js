@@ -4,8 +4,9 @@ import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import DeckManager from './deck-manager/app';
 import SaveToDeck from './save-to-deck/app';
 import database from './config';
-import './util/reset.css';
 import './util/variables.css';
+import './util/reset.css';
+import './util/fonts.css';
 import './util/base.css';
 
 if (process.env.NODE_ENV === 'development') {

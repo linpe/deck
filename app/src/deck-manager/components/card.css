@@ -1,11 +1,12 @@
 .card {
   border-radius: 8px;
   box-shadow: 0 2px 4px 0 rgba(155, 35, 8, 0.3);
-  transition: transform 100ms ease-out, box-shadow 150ms ease-out;
+  font-family: 'Circular Std', sans-serif;
+  font-weight: var(--font-weight-regular);
+  transition: box-shadow 150ms ease-out;
 }
 
 .card:hover {
-  transform: translateY(-8px);
   box-shadow: 0 11px 24px 0 rgba(155, 35, 8, 0.3);
 }
 
@@ -40,9 +41,9 @@
   display: block;
   padding: 8px 16px;
   border-radius: 40px;
-  border: solid 3px #fff;
+  border: solid 3px var(--colour-white);
   font-size: 14px;
-  color: #fff;
+  color: var(--colour-white);
   font-weight: 500;
   text-align: center;
   text-decoration: none;
@@ -66,10 +67,10 @@
   right: 0;
   bottom: 0;
   left: 0;
-  height: 40px;
+  height: 24px;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
-  background: linear-gradient(0, #fff 8px, transparent);
+  background-color: var(--colour-white);
 }
 
 .date {
@@ -81,6 +82,5 @@
 .name {
   color: var(--colour-dark-grey);
   font-size: 20px;
-  font-weight: bold;
   text-decoration: none;
 }

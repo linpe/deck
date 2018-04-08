@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
+import styles from './folder-selector.css';
 
 class FolderSelector extends React.PureComponent {
   static propTypes = {
@@ -34,7 +35,7 @@ class FolderSelector extends React.PureComponent {
     const showFolders = !isEmpty(this.props.folders.items);
 
     return (
-      <select value={this.props.selectedFolder} onChange={this.props.onChange('folder')}>
+      <select className={styles.select} value={this.props.selectedFolder} onChange={this.props.onChange('folder')}>
         {showFolders &&
           this.props.folders.items.map((folder, index) => (
             <option key={index} value={folder}>

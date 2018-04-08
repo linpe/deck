@@ -1,19 +1,36 @@
 .body {
-  max-width: 1150px;
-  margin: 0 auto;
-  padding: 88px 8px;
+  composes: containerSmall from '../../util/layout.css';
+  padding-top: 64px;
+  padding-bottom: 48px;
 }
 
 .heading {
+  display: flex;
+  align-items: center;
   margin-bottom: 64px;
-  color: var(--colour-dark-grey);
+  color: var(--colour-black-grey);
+  font-family: 'Circular Std', sans-serif;
   font-size: 38px;
-  font-weight: 200;
+  font-weight: var(--font-weight-medium);
 }
 
 .grid {
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 56px;
+  grid-template-columns: repeat(4, 244px);
+  grid-gap: 54.333333333px;
+}
+
+.backButtonContainer {
+  margin-right: 8px;
+  margin-left: 4px;
+}
+
+.backButton {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-top: 3px solid var(--colour-black-grey);
+  border-left: 3px solid var(--colour-black-grey);
+  transform: rotate(-45deg);
 }
