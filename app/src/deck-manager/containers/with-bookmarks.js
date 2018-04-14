@@ -18,6 +18,7 @@ const withBookmarks = Component => {
 
     state = {
       bookmarks: {},
+      selectedBookmarks: {},
     };
 
     getBookmarks = () => {
@@ -49,14 +50,26 @@ const withBookmarks = Component => {
       this.props.database.ref(`/bookmarks/${this.props.user.uid}/${folder}/${linkId}`).remove();
     };
 
+    selectBookmark = (linkId, selected) => {
+      this.setState(prevState => {
+        return {
+          selectedBookmarks: {
+            ...prevState.selectedBookmarks,
+            [linkId]: selected,
+          },
+        };
+      });
+    };
+
     render() {
       return (
         <Component
+          {...this.state}
           {...this.props}
           addBookmark={this.addBookmark}
-          bookmarks={this.state.bookmarks}
           deleteBookmark={this.deleteBookmark}
           getBookmarks={this.getBookmarks}
+          selectBookmark={this.selectBookmark}
         />
       );
     }

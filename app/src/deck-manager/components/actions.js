@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Action from './action';
 import AddSiteButton from './add-site-button';
-import FolderSelector from './folder-selector';
 import styles from './actions.css';
 
 class Actions extends React.PureComponent {

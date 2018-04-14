@@ -10,10 +10,14 @@ class Card extends React.PureComponent {
     href: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    onSelectClick: PropTypes.func.isRequired,
+    selected: PropTypes.bool,
   };
 
   state = {
+    folder: undefined,
     imageUrl: undefined,
+    selected: false,
   };
 
   componentDidMount = () => {
@@ -28,6 +32,10 @@ class Card extends React.PureComponent {
       });
   };
 
+  onClick = () => {
+    this.props.onSelectClick(this.props.id, !this.props.selected);
+  };
+
   render() {
     let backgroundImage;
     if (this.state.imageUrl) {
@@ -35,7 +43,11 @@ class Card extends React.PureComponent {
     }
 
     return (
-      <div className={styles.card} key={this.props.id}>
+      <div
+        className={`${styles.card} ${this.props.selected ? styles.cardSelected : ''}`}
+        key={this.props.id}
+        onClick={this.onClick}
+      >
         <div className={styles.cardImage} style={{ backgroundImage }}>
           <div className={styles.cardOverlay}>
             <a className={styles.cardButton} href={this.props.href} target="_blank" rel="noopener noreferrer">

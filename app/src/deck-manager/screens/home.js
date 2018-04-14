@@ -25,7 +25,11 @@ const Home = ({ authenticated, logOut, match, ...props }) => {
         <PrivateRoute
           path="/:folder"
           component={FolderDetail}
-          componentProps={{ bookmarks: props.bookmarks }}
+          componentProps={{
+            bookmarks: props.bookmarks,
+            onSelectClick: props.selectBookmark,
+            selectedBookmarks: props.selectedBookmarks,
+          }}
           authenticated={authenticated}
         />
       </Switch>

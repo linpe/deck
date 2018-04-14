@@ -17,6 +17,8 @@ class Dashboard extends React.PureComponent {
     folders: PropTypes.object.isRequired,
     getBookmarks: PropTypes.func.isRequired,
     getFolders: PropTypes.func.isRequired,
+    selectBookmark: PropTypes.func.isRequired,
+    selectedBookmarks: PropTypes.object.isRequired,
   };
 
   state = {
@@ -86,7 +88,14 @@ class Dashboard extends React.PureComponent {
                 return <Folder key={index} label={folder} />;
               }
 
-              return links.map(link => <Card {...link} key={link.id} />);
+              return links.map(link => (
+                <Card
+                  {...link}
+                  key={link.id}
+                  onSelectClick={this.props.selectBookmark}
+                  selected={this.props.selectedBookmarks[link.id]}
+                />
+              ));
             })}
           </CardList>
         )}

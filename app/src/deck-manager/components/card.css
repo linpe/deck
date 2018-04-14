@@ -1,9 +1,24 @@
 .card {
+  position: relative;
   border-radius: 8px;
   box-shadow: 0 2px 4px 0 rgba(155, 35, 8, 0.3);
   font-family: 'Circular Std', sans-serif;
   font-weight: var(--font-weight-regular);
   transition: box-shadow 150ms ease-out;
+}
+
+.cardSelected::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  bottom: 0;
+  left: 50%;
+  width: 108%;
+  height: 106%;
+  border: 6px solid var(--colour-primary);
+  border-radius: 13px;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .card:hover {
