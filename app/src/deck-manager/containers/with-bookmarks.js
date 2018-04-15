@@ -18,7 +18,6 @@ const withBookmarks = Component => {
 
     state = {
       bookmarks: {},
-      selectedBookmarks: {},
     };
 
     getBookmarks = () => {
@@ -46,19 +45,8 @@ const withBookmarks = Component => {
       });
     };
 
-    deleteBookmark = (linkId, folder) => {
+    deleteBookmark = (linkId, folder = 'Uncategorised') => {
       this.props.database.ref(`/bookmarks/${this.props.user.uid}/${folder}/${linkId}`).remove();
-    };
-
-    selectBookmark = (linkId, selected) => {
-      this.setState(prevState => {
-        return {
-          selectedBookmarks: {
-            ...prevState.selectedBookmarks,
-            [linkId]: selected,
-          },
-        };
-      });
     };
 
     render() {

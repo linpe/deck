@@ -7,15 +7,19 @@ import styles from './card.css';
 class Card extends React.PureComponent {
   static propTypes = {
     dateAdded: PropTypes.string.isRequired,
+    folder: PropTypes.string.isRequired,
     href: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    onSelectClick: PropTypes.func.isRequired,
+    onDeleteBookmarkClick: PropTypes.func.isRequired,
     selected: PropTypes.bool,
   };
 
-  state = {
+  static defaultProps = {
     folder: undefined,
+  }
+
+  state = {
     imageUrl: undefined,
     selected: false,
   };
@@ -33,8 +37,8 @@ class Card extends React.PureComponent {
   };
 
   onClick = () => {
-    this.props.onSelectClick(this.props.id, !this.props.selected);
-  };
+    this.props.onDeleteBookmarkClick(this.props.id, this.props.folder)
+  }
 
   render() {
     let backgroundImage;
@@ -43,16 +47,13 @@ class Card extends React.PureComponent {
     }
 
     return (
-      <div
-        className={`${styles.card} ${this.props.selected ? styles.cardSelected : ''}`}
-        key={this.props.id}
-        onClick={this.onClick}
-      >
+      <div className={`${styles.card} ${this.props.selected ? styles.cardSelected : ''}`} key={this.props.id}>
         <div className={styles.cardImage} style={{ backgroundImage }}>
           <div className={styles.cardOverlay}>
             <a className={styles.cardButton} href={this.props.href} target="_blank" rel="noopener noreferrer">
               Open in new tab
             </a>
+            <button className={styles.deleteButton} onClick={this.onClick} />
           </div>
         </div>
         <div className={styles.cardBody}>

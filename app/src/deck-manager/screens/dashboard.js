@@ -17,8 +17,6 @@ class Dashboard extends React.PureComponent {
     folders: PropTypes.object.isRequired,
     getBookmarks: PropTypes.func.isRequired,
     getFolders: PropTypes.func.isRequired,
-    selectBookmark: PropTypes.func.isRequired,
-    selectedBookmarks: PropTypes.object.isRequired,
   };
 
   state = {
@@ -92,8 +90,8 @@ class Dashboard extends React.PureComponent {
                 <Card
                   {...link}
                   key={link.id}
+                  onDeleteBookmarkClick={this.onDeleteBookmarkClick}
                   onSelectClick={this.props.selectBookmark}
-                  selected={this.props.selectedBookmarks[link.id]}
                 />
               ));
             })}
@@ -103,6 +101,7 @@ class Dashboard extends React.PureComponent {
           {...this.state.linkToSave}
           folders={this.props.folders}
           onChange={this.onChange}
+          onDeleteBookmarkClick={this.onDeleteBookmarkClick}
           onGetFolders={this.props.getFolders}
           onSubmit={this.onSubmit}
         />
