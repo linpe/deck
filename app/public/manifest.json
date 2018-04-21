@@ -1,7 +1,7 @@
 {
   "name": "Deck",
   "description": "Save stuff and never look at them again",
-  "version": "0.0",
+  "version": "0.1.0",
   "permissions": [
     "activeTab",
     "storage"
