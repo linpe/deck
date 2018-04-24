@@ -19,7 +19,7 @@ const App = props => {
   return (
     <Router>
       <Switch>
-        <Route path="/" component={Home} componentProps={{ ...props, authenticated }} />
+        <Route exact path="/" component={Home} componentProps={{ ...props, authenticated }} />
         <Route path="/login" component={Login} componentProps={{ authenticated, logIn: props.logIn }} />
       </Switch>
     </Router>

@@ -1,3 +1,15 @@
+.loginContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.login {
+  width: 300px;
+}
+
 .inputWrapper {
   position: relative;
   margin-bottom: 16px;

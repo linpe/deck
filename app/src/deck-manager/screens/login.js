@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
-import isEmpty from 'lodash/isEmpty';
+import classNames from 'classnames';
+import styles from '../../save-to-deck/components/login.css';
+
+function inputClasses(value) {
+  return classNames(styles.input, {
+    [styles.inputFocus]: value.length > 0,
+  });
+}
 
 class Login extends React.PureComponent {
   static propTypes = {
@@ -68,21 +75,41 @@ class Login extends React.PureComponent {
   };
 
   render() {
-    const showErrors = !isEmpty(this.state.errors);
-
     return (
-      <form onSubmit={this.onSubmit}>
-        <label>
-          <span>Email</span>
-          <input onChange={this.onChange('email')} type="email" value={this.state.email} />
-        </label>
-        <label>
-          <span>Password</span>
-          <input onChange={this.onChange('password')} type="password" value={this.state.password} />
-        </label>
-        <button>{this.state.loading ? 'Signing in...' : 'Sign in'}</button>
-        {showErrors && <div>{this.state.errors}</div>}
-      </form>
+      <div className={styles.loginContainer}>
+        <form className={styles.login} onSubmit={this.onSubmit}>
+          <div className={styles.inputWrapper}>
+            <input
+              id="email"
+              className={inputClasses(this.state.email)}
+              onChange={this.onChange('email')}
+              type="email"
+              value={this.state.email}
+            />
+            <label htmlFor="email" className={styles.placeholder}>
+              Email*
+            </label>
+          </div>
+          <div className={styles.inputWrapper}>
+            <input
+              id="password"
+              className={inputClasses(this.state.password)}
+              onChange={this.onChange('password')}
+              type="password"
+              value={this.state.password}
+            />
+            <label htmlFor="password" className={styles.placeholder}>
+              Password*
+            </label>
+          </div>
+          <button className={styles.button} onClick={this.onSubmit} type="submit">
+            {this.state.loading ? 'Signing in...' : 'Sign in'}
+          </button>
+          {this.state.errors.length > 0 && (
+            <ul className={styles.errors}>{this.state.errors.map((error, index) => <li key={index}>{error}</li>)}</ul>
+          )}
+        </form>
+      </div>
     );
   }
 }
