@@ -7,21 +7,21 @@ import styles from './card.css';
 class Card extends React.PureComponent {
   static propTypes = {
     dateAdded: PropTypes.string.isRequired,
-    folder: PropTypes.string.isRequired,
     href: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     onDeleteBookmarkClick: PropTypes.func.isRequired,
+    folder: PropTypes.string,
     selected: PropTypes.bool,
   };
 
   static defaultProps = {
     folder: undefined,
-  }
+    selected: false,
+  };
 
   state = {
     imageUrl: undefined,
-    selected: false,
   };
 
   componentDidMount = () => {
@@ -37,8 +37,8 @@ class Card extends React.PureComponent {
   };
 
   onClick = () => {
-    this.props.onDeleteBookmarkClick(this.props.id, this.props.folder)
-  }
+    this.props.onDeleteBookmarkClick(this.props.id, this.props.folder);
+  };
 
   render() {
     let backgroundImage;

@@ -26,13 +26,13 @@ class Login extends React.PureComponent {
 
   componentDidMount = () => {
     if (this.props.authenticated) {
-      this.props.history.push('/dashboard');
+      this.props.history.push('/');
     }
   };
 
   componentWillReceiveProps = nextProps => {
     if (nextProps.authenticated) {
-      this.props.history.push('/dashboard');
+      this.props.history.push('/');
     }
   };
 
@@ -85,6 +85,7 @@ class Login extends React.PureComponent {
               onChange={this.onChange('email')}
               type="email"
               value={this.state.email}
+              autoFocus
             />
             <label htmlFor="email" className={styles.placeholder}>
               Email*
