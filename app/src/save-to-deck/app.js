@@ -84,11 +84,17 @@ class App extends React.PureComponent {
       folder = 'Uncategorised';
     }
 
-    this.props.database.ref(`/bookmarks/${this.state.user.uid}/${folder}`).push({
-      dateAdded: new Date().toISOString(),
-      href: window.location.href,
-      name: document.title,
-    });
+    this.props.database
+      .ref(`/bookmarks/${this.state.user.uid}/${folder}`)
+      .push({
+        dateAdded: new Date().toISOString(),
+        href: window.location.href,
+        name: document.title,
+      })
+      .then(() => {
+        // eslint-disable-next-line no-undef
+        chrome.runtime.sendMessage(process.env.REACT_APP_EXTENSION_ID, { close: true });
+      });
   };
 
   logIn = (email, password) => {
