@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 import { Redirect, Switch } from 'react-router-dom';
 import Dashboard from './dashboard';
 import FolderDetail from './folder-detail';
@@ -43,4 +44,4 @@ Home.propTypes = {
   match: PropTypes.object.isRequired,
 };
 
-export default Home;
+export default withRouter(Home);

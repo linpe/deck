@@ -1,5 +1,5 @@
 import React from 'react';
-import { MemoryRouter as Router, Switch } from 'react-router-dom';
+import { MemoryRouter as Router } from 'react-router-dom';
 import flow from 'lodash/flow';
 import isEmpty from 'lodash/isEmpty';
 import withBookmarks from './containers/with-bookmarks';
@@ -7,7 +7,6 @@ import withFolders from './containers/with-folders';
 import withUser from './containers/with-user';
 import Home from './screens/home';
 import Login from './screens/login';
-import Route from './components/route';
 
 const App = props => {
   if (isEmpty(props.user) || props.user.loading) {
@@ -16,14 +15,14 @@ const App = props => {
 
   const authenticated = !!props.user.uid;
 
-  return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Home} componentProps={{ ...props, authenticated }} />
-        <Route path="/login" component={Login} componentProps={{ authenticated, logIn: props.logIn }} />
-      </Switch>
-    </Router>
-  );
+  let screen;
+  if (authenticated) {
+    screen = <Home {...props} authenticated={authenticated} />;
+  } else {
+    screen = <Login authenticated={authenticated} logIn={props.logIn} />;
+  }
+
+  return <Router>{screen}</Router>;
 };
 
 export default flow([withFolders, withBookmarks, withUser])(App);

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import firebase from 'firebase';
 import Add from './components/add';
 import Login from './components/login';
-import withClickOutside from './components/with-click-outside';
 import styles from './app.css';
 
 class App extends React.PureComponent {
@@ -171,4 +170,4 @@ class App extends React.PureComponent {
   }
 }
 
-export default withClickOutside(App);
+export default App;
