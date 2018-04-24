@@ -17,7 +17,12 @@ class App extends React.PureComponent {
       password: '',
     },
     user: {},
-    selectedFolder: {},
+    saved: false,
+    saving: false,
+    selectedFolder: {
+      label: '',
+      value: '',
+    },
   };
 
   componentDidMount = async () => {
@@ -77,6 +82,8 @@ class App extends React.PureComponent {
   };
 
   onAddSubmit = () => {
+    this.setState({ saving: true });
+
     let folder;
     if (this.state.selectedFolder.value) {
       folder = this.state.selectedFolder.value;
@@ -92,6 +99,7 @@ class App extends React.PureComponent {
         name: document.title,
       })
       .then(() => {
+        this.setState({ saving: false, saved: true });
         // eslint-disable-next-line no-undef
         chrome.runtime.sendMessage(process.env.REACT_APP_EXTENSION_ID, { close: true });
       });
@@ -162,6 +170,8 @@ class App extends React.PureComponent {
             loading={this.state.folders.loading}
             onChange={this.onSelectChange}
             onSubmit={this.onAddSubmit}
+            saved={this.state.saved}
+            saving={this.state.saving}
             selectedFolder={this.state.selectedFolder}
           />
         ) : (

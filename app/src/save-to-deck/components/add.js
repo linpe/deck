@@ -12,22 +12,22 @@ class Add extends React.PureComponent {
     getFolders: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
-    folders: PropTypes.arrayOf(PropTypes.string),
-    loading: PropTypes.bool,
+    saved: PropTypes.bool.isRequired,
+    saving: PropTypes.bool.isRequired,
     selectedFolder: PropTypes.shape({
       label: PropTypes.string,
       value: PropTypes.string,
-    }),
+    }).isRequired,
+    folders: PropTypes.arrayOf(PropTypes.string),
+    loading: PropTypes.bool,
   };
 
   static defaultProps = {
     folders: [],
     loading: false,
-    selectedFolder: {},
   };
 
   state = {
-    value: '',
     suggestions: [],
   };
 
@@ -47,7 +47,8 @@ class Add extends React.PureComponent {
   };
 
   onChange = (event, { newValue }) => {
-    this.setState({
+    this.props.onChange({
+      label: newValue,
       value: newValue,
     });
   };
@@ -88,9 +89,16 @@ class Add extends React.PureComponent {
 
     const inputProps = {
       placeholder: 'Select a folder to save',
-      value: this.state.value,
+      value: this.props.selectedFolder.value,
       onChange: this.onChange,
     };
+
+    let buttonLabel = 'Add';
+    if (this.props.saving) {
+      buttonLabel = 'Saving...';
+    } else if (this.props.saved) {
+      buttonLabel = 'Saved';
+    }
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -120,7 +128,7 @@ class Add extends React.PureComponent {
           }}
         />
         <button className={styles.button} onClick={this.handleSubmit(this.props.onSubmit)}>
-          Add
+          {buttonLabel}
         </button>
       </form>
     );
