@@ -52,16 +52,8 @@ exports.getWebsiteScreenshot = functions.database.ref('/bookmarks/{userId}/{fold
           },
         })
         .then(() => {
-          const file = storage.bucket(functions.config().fire.bucket).file(`${fileName}-thumb.jpg`);
-          file.getSignedUrl({
-            action: 'react',
-            expires: '03-01-2500',
-            contentType: 'image/jpeg',
-          });
-        })
-        .then(() => {
           console.log('Uploaded');
-          return event.data.ref.update({ imageId: uuid });
+          // return event.data.ref.update({ hasImage: true });
         })
         .then(() => {
           fs.unlinkSync(tempFilePath);
