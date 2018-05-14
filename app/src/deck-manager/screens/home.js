@@ -28,6 +28,7 @@ const Home = ({ authenticated, logOut, match, ...props }) => {
           component={FolderDetail}
           componentProps={{
             bookmarks: props.bookmarks,
+            onDeleteBookmarkClick: props.deleteBookmark,
             onSelectClick: props.selectBookmark,
             selectedBookmarks: props.selectedBookmarks,
           }}

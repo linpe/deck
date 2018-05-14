@@ -41,5 +41,10 @@ if (process.env.NODE_ENV === 'development') {
     App = SaveToDeck;
   }
 
+  // eslint-disable-next-line no-undef
+  chrome.storage.sync.get(null, thing => {
+    console.log('the thing is', thing);
+  });
+
   ReactDOM.render(<App database={database} />, document.getElementById('deck-entry-point'));
 }
