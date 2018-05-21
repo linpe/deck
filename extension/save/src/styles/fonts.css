@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Circular Std';
+  src: url('../fonts/circular-std-book.woff2');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Circular Std';
+  src: url('../fonts/circular-std-medium.woff2');
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/work-sans-regular.woff2');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('../fonts/work-sans-medium.woff2');
+  font-style: normal;
+  font-weight: 500;
+}

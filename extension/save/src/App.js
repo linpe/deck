@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from 'firebase';
 import Save from './save';
 import SignIn from './sign-in';
+import './app.css';
 
 const screens = {
   save: Save,
@@ -161,7 +162,7 @@ class App extends React.PureComponent {
     const Screen = screens[this.state.activeScreen];
 
     return (
-      <div>
+      <div className="deck">
         <Screen
           {...this.state}
           onChangeSave={this.onChangeSave}

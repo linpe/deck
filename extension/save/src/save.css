@@ -1,0 +1,72 @@
+.save-header {
+  margin-bottom: 18px;
+  color: var(--colour-dark-grey);
+  font-size: 30px;
+  font-weight: var(--font-weight-medium);
+}
+
+.save-autosuggest {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.save-autosuggest-input {
+  outline: none;
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  border: 1px solid var(--colour-light-grey);
+  background-color: var(--colour-light-grey);
+  color: inherit;
+  font: inherit;
+  transition: border-color 150ms linear;
+}
+
+.save-autosuggest-input.is-focused,
+.save-autosuggest-input.is-open {
+  border-color: var(--colour-secondary);
+}
+
+.save-autosuggest-container {
+  overflow-y: auto;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  max-height: 200px;
+}
+
+.save-autosuggest-container.is-open {
+  border-right: 1px solid var(--colour-secondary);
+  border-bottom: 1px solid var(--colour-secondary);
+  border-left: 1px solid var(--colour-secondary);
+}
+
+.save-autosuggest-item {
+  cursor: pointer;
+  padding: 8px;
+  background-color: var(--colour-white);
+}
+
+.save-autosuggest-item.is-highlighted {
+  background-color: var(--colour-secondary);
+  color: var(--colour-white);
+}
+
+.save-button {
+  cursor: pointer;
+  outline: none;
+  padding: 14px;
+  border: 0;
+  border-radius: 100px;
+  background-color: var(--colour-primary);
+  color: var(--colour-white);
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  transition: background-color 200ms linear;
+}
+
+.save-button:focus,
+.save-button:hover {
+  background-color: var(--colour-primary-light);
+}

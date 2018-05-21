@@ -1,5 +1,6 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
+import './save.css';
 
 function escapeRegexCharacters(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -55,16 +56,16 @@ class Save extends React.PureComponent {
       onChange: this.onChange,
     };
 
-    let buttonLabel = 'Save';
+    let buttonLabel = 'Save link';
     if (this.props.savedLink.saving) {
-      buttonLabel = 'Saving...';
+      buttonLabel = 'Saving link...';
     } else if (this.props.savedLink.saved) {
-      buttonLabel = 'Saved';
+      buttonLabel = 'Saved link';
     }
 
     return (
       <form onSubmit={this.props.onSaveLink}>
-        <h1>Add site</h1>
+        <h1 className="save-header">Add site</h1>
         <Autosuggest
           suggestions={this.state.suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -73,8 +74,25 @@ class Save extends React.PureComponent {
           shouldRenderSuggestions={this.shouldRenderSuggestions}
           renderSuggestion={this.renderSuggestion}
           inputProps={inputProps}
+          theme={{
+            container: 'save-autosuggest',
+            containerOpen: 'is-open',
+            input: 'save-autosuggest-input',
+            inputOpen: 'is-open',
+            inputFocused: 'is-focused',
+            suggestionsContainer: 'save-autosuggest-container',
+            suggestionsContainerOpen: 'is-open',
+            suggestionsList: 'save-autosuggest-list',
+            suggestion: 'save-autosuggest-item',
+            suggestionFirst: 'is-first',
+            suggestionHighlighted: 'is-highlighted',
+            sectionContainer: 'save-autosuggest-section',
+            sectionContainerFirst: 'is-first',
+            sectionTitle: 'save-autosuggest-section-title',
+          }}
+          alwaysRenderSuggestions={false}
         />
-        <button>{buttonLabel}</button>
+        <button className="save-button">{buttonLabel}</button>
       </form>
     );
   }
