@@ -66,32 +66,37 @@ class Save extends React.PureComponent {
     return (
       <form onSubmit={this.props.onSaveLink}>
         <h1 className="save-header">Add site</h1>
-        <Autosuggest
-          suggestions={this.state.suggestions}
-          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-          getSuggestionValue={this.getSuggestionValue}
-          shouldRenderSuggestions={this.shouldRenderSuggestions}
-          renderSuggestion={this.renderSuggestion}
-          inputProps={inputProps}
-          theme={{
-            container: 'save-autosuggest',
-            containerOpen: 'is-open',
-            input: 'save-autosuggest-input',
-            inputOpen: 'is-open',
-            inputFocused: 'is-focused',
-            suggestionsContainer: 'save-autosuggest-container',
-            suggestionsContainerOpen: 'is-open',
-            suggestionsList: 'save-autosuggest-list',
-            suggestion: 'save-autosuggest-item',
-            suggestionFirst: 'is-first',
-            suggestionHighlighted: 'is-highlighted',
-            sectionContainer: 'save-autosuggest-section',
-            sectionContainerFirst: 'is-first',
-            sectionTitle: 'save-autosuggest-section-title',
-          }}
-          alwaysRenderSuggestions={false}
-        />
+        <div className="save-autosuggest-container">
+          <Autosuggest
+            suggestions={this.state.suggestions}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            getSuggestionValue={this.getSuggestionValue}
+            shouldRenderSuggestions={this.shouldRenderSuggestions}
+            renderSuggestion={this.renderSuggestion}
+            inputProps={inputProps}
+            theme={{
+              container: 'save-autosuggest',
+              containerOpen: 'is-open',
+              input: 'save-autosuggest-input',
+              inputOpen: 'is-open',
+              inputFocused: 'is-focused',
+              suggestionsContainer: 'save-autosuggest-suggestions',
+              suggestionsContainerOpen: 'is-open',
+              suggestionsList: 'save-autosuggest-suggestions-list',
+              suggestion: 'save-autosuggest-suggestion',
+              suggestionFirst: 'is-first',
+              suggestionHighlighted: 'is-highlighted',
+              sectionContainer: 'save-autosuggest-section',
+              sectionContainerFirst: 'is-first',
+              sectionTitle: 'save-autosuggest-section-title',
+            }}
+            alwaysRenderSuggestions={false}
+          />
+          <div className="save-arrow-container">
+            <div className="save-arrow" />
+          </div>
+        </div>
         <button className="save-button">{buttonLabel}</button>
       </form>
     );

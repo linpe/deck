@@ -1,0 +1,71 @@
+.sign-in-header {
+  margin-bottom: 18px;
+  color: var(--colour-dark-grey);
+  font-size: 30px;
+  font-weight: var(--font-weight-medium);
+}
+
+.sign-in-input-wrapper {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.sign-in-input {
+  outline: none;
+  width: 100%;
+  height: 40px;
+  padding: 0 8px;
+  border: 1px solid var(--colour-light-grey);
+  background-color: var(--colour-light-grey);
+  color: inherit;
+  font: inherit;
+  transition: border-color 150ms linear;
+}
+
+.sign-in-input:focus,
+.sign-in-input.is-focused {
+  padding-top: 8px;
+  border-color: var(--colour-secondary);
+}
+
+.sign-in-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-left: 8px;
+  color: var(--colour-grey);
+  line-height: 40px;
+  pointer-events: none;
+  transition: top 150ms ease-in, font-size 150ms linear;
+}
+
+.sign-in-input:focus + .sign-in-label,
+.sign-in-input.is-focused + .sign-in-label {
+  top: -10px;
+  font-size: 9px;
+}
+
+.sign-in-button {
+  cursor: pointer;
+  outline: none;
+  width: 120px;
+  padding: 14px;
+  border: 0;
+  border-radius: 100px;
+  background-color: var(--colour-primary);
+  color: var(--colour-white);
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  transition: background-color 200ms linear;
+}
+
+.sign-in-button:focus,
+.sign-in-button:hover {
+  background-color: var(--colour-primary-light);
+}
+
+.sign-in-button:disabled {
+  cursor: default;
+  background-color: var(--colour-light-grey);
+  color: var(--colour-white);
+}
