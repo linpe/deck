@@ -52,7 +52,7 @@
   background-color: var(--colour-white);
 }
 
-.save-autosuggest-item.is-highlighted {
+.save-autosuggest-suggestion.is-highlighted {
   background-color: var(--colour-secondary);
   color: var(--colour-white);
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
+import Placeholder from './placeholder';
 import Save from './save';
 import SignIn from './sign-in';
 import './app.css';
@@ -155,11 +156,12 @@ class App extends React.PureComponent {
   };
 
   render() {
-    if (!this.state.activeScreen) {
-      return null;
+    let Screen;
+    if (this.state.activeScreen) {
+      Screen = screens[this.state.activeScreen];
+    } else {
+      Screen = Placeholder;
     }
-
-    const Screen = screens[this.state.activeScreen];
 
     return (
       <div className="deck">

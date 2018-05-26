@@ -1,0 +1,21 @@
+.placeholder-header {
+  width: 75%;
+  height: 30px;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  background-color: var(--colour-light-grey);
+}
+
+.placeholder-box {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 16px;
+  background-color: var(--colour-light-grey);
+}
+
+.placeholder-button {
+  width: 25%;
+  height: 45px;
+  border-radius: 100px;
+  background-color: var(--colour-light-grey);
+}
