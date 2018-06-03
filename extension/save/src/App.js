@@ -118,7 +118,7 @@ class App extends React.PureComponent {
           ...prevState,
           signIn: {
             ...prevState.signIn,
-            error: 'error.message',
+            error: error.message,
             sending: false,
           },
         }));
