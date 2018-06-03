@@ -19,7 +19,7 @@ const SignIn = ({ onChangeSignIn: onChange, signIn, onSignIn }) => {
 
   return (
     <form onSubmit={event => handleSubmit(event, onSignIn)}>
-      <h1 class="sign-in-header">Sign in</h1>
+      <h1 className="sign-in-header">Sign in</h1>
       <div className="sign-in-input-wrapper">
         <input
           className={inputClasses(signIn.email)}
