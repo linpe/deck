@@ -1,0 +1,39 @@
+.container {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.input {
+  outline: none;
+  width: 100%;
+  height: 40px;
+  padding: 0 8px;
+  border: 1px solid var(--colour-light-grey);
+  background-color: var(--colour-light-grey);
+  color: inherit;
+  font: inherit;
+  transition: border-color 150ms linear;
+}
+
+.input:focus,
+.inputFocused {
+  padding-top: 8px;
+  border-color: var(--colour-secondary);
+}
+
+.label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-left: 8px;
+  color: var(--colour-grey);
+  line-height: 40px;
+  pointer-events: none;
+  transition: top 150ms ease-in, font-size 150ms linear;
+}
+
+.input:focus + .label,
+.inputFocused + .label {
+  top: -10px;
+  font-size: 9px;
+}

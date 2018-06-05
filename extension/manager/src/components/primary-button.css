@@ -1,0 +1,24 @@
+.button {
+  cursor: pointer;
+  outline: none;
+  width: 120px;
+  padding: 14px;
+  border: 0;
+  border-radius: 100px;
+  background-color: var(--colour-primary);
+  color: var(--colour-white);
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  transition: background-color 200ms linear;
+}
+
+.button:focus,
+.button:hover {
+  background-color: var(--colour-primary-light);
+}
+
+.button:disabled {
+  cursor: default;
+  background-color: var(--colour-light-grey);
+  color: var(--colour-white);
+}

@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  position: relative;
+  height: 70px;
+  background-color: var(--colour-primary);
+}
+
+.headerTitle {
+  color: var(--colour-white);
+  font-size: 24px;
+}
+
+.signOutButton {
+  cursor: pointer;
+  outline: none;
+  position: absolute;
+  top: 0;
+  right: 16px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--colour-white);
+  font: inherit;
+  line-height: 70px;
+}
+
+.signOutButton:focus,
+.signOutButton:hover {
+  text-decoration: underline;
+}
+
+.body {
+  flex-grow: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 48px 16px;
+}
