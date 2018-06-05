@@ -50,6 +50,11 @@ class Manager extends React.PureComponent {
     return (
       <div className={styles.container}>
         <header className={styles.header}>
+          {this.state.activeFolder && (
+            <button className={styles.backButton} onClick={() => this.setActiveFolder()}>
+              Back <div className={styles.backArrow} />
+            </button>
+          )}
           <p className={styles.headerTitle}>SiteDeck</p>
           <button className={styles.signOutButton} onClick={this.props.onSignOut}>
             Sign out
@@ -65,6 +70,7 @@ class Manager extends React.PureComponent {
                 id,
               }))
             }
+            folder={this.state.activeFolder}
             show={!!this.state.activeFolder}
           />
         </div>
