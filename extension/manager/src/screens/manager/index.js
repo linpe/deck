@@ -18,7 +18,7 @@ class Manager extends React.PureComponent {
     bookmarks: {},
     folders: [],
     loading: false,
-    showAddPopup: false,
+    selectedBookmarks: {},
   };
 
   componentDidMount() {
@@ -46,6 +46,16 @@ class Manager extends React.PureComponent {
     });
   };
 
+  toggleSelected = id => {
+    this.setState(prevState => ({
+      ...prevState,
+      selectedBookmarks: {
+        ...prevState.selectedBookmarks,
+        [id]: prevState.selectedBookmarks[id] ? false : true,
+      },
+    }));
+  };
+
   render() {
     return (
       <div className={styles.container}>
@@ -68,9 +78,11 @@ class Manager extends React.PureComponent {
               Object.entries(this.state.bookmarks[this.state.activeFolder]).map(([id, properties]) => ({
                 ...properties,
                 id,
+                selected: this.state.selectedBookmarks[id],
               }))
             }
             folder={this.state.activeFolder}
+            onToggleSelected={this.toggleSelected}
             show={!!this.state.activeFolder}
           />
         </div>

@@ -10,6 +10,7 @@ class Card extends React.PureComponent {
     href: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    onToggleSelected: PropTypes.func.isRequired,
     selected: PropTypes.bool,
   };
 
@@ -40,7 +41,7 @@ class Card extends React.PureComponent {
     }
 
     return (
-      <div className={styles.container}>
+      <div className={styles.container} onClick={() => this.props.onToggleSelected(this.props.id)}>
         <div className={`${styles.card} ${this.props.selected ? styles.cardSelected : ''}`} key={this.props.id}>
           <div className={styles.cardImage} style={{ backgroundImage }}>
             <div className={styles.cardOverlay}>
