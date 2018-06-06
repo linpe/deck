@@ -95,8 +95,13 @@ class App extends React.PureComponent {
     firebase.auth().signOut();
   };
 
-  deleteBookmarks = () => {
-    console.log('boop');
+  deleteBookmarks = (folder, bookmarks) => {
+    Object.entries(bookmarks).forEach(([id]) => {
+      firebase
+        .database()
+        .ref(`/bookmarks/${this.state.user}/${folder}/${id}`)
+        .remove();
+    });
   };
 
   render() {

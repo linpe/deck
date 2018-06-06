@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './action-bar.css';
 
-const ActionBar = ({ onDelete }) => (
+const ActionBar = ({ deleteDisabled, onDelete }) => (
   <div className={styles.container}>
     <div className={styles.inner}>
-      <button className={styles.button} onClick={onDelete}>
+      <button className={styles.button} disabled={deleteDisabled} onClick={onDelete}>
         Delete
       </button>
     </div>
@@ -13,6 +13,7 @@ const ActionBar = ({ onDelete }) => (
 );
 
 ActionBar.propTypes = {
+  deleteDisabled: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 

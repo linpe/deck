@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import firebase from 'firebase';
+import isEmpty from 'lodash/isEmpty';
 import ActionBar from './action-bar';
 import FolderItems from './folder-items';
 import Folders from './folders';
@@ -60,15 +61,17 @@ class Manager extends React.PureComponent {
     return (
       <div className={styles.container}>
         <header className={styles.header}>
-          {this.state.activeFolder && (
-            <button className={styles.backButton} onClick={() => this.setActiveFolder()}>
-              Back <div className={styles.backArrow} />
+          <div className={styles.headerInner}>
+            {this.state.activeFolder && (
+              <button className={styles.backButton} onClick={() => this.setActiveFolder()}>
+                Back <div className={styles.backArrow} />
+              </button>
+            )}
+            <p className={styles.headerTitle}>SiteDeck</p>
+            <button className={styles.signOutButton} onClick={this.props.onSignOut}>
+              Sign out
             </button>
-          )}
-          <p className={styles.headerTitle}>SiteDeck</p>
-          <button className={styles.signOutButton} onClick={this.props.onSignOut}>
-            Sign out
-          </button>
+          </div>
         </header>
         <div className={styles.body}>
           <Folders folders={this.state.folders} onFolderClick={this.setActiveFolder} show={!this.state.activeFolder} />
@@ -86,7 +89,13 @@ class Manager extends React.PureComponent {
             show={!!this.state.activeFolder}
           />
         </div>
-        <ActionBar onDelete={this.props.onDelete} />
+        <ActionBar
+          deleteDisabled={
+            isEmpty(this.state.selectedBookmarks) ||
+            !Object.values(this.state.selectedBookmarks).find(selected => selected)
+          }
+          onDelete={() => this.props.onDelete(this.state.activeFolder, this.state.selectedBookmarks)}
+        />
       </div>
     );
   }
