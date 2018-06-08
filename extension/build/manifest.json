@@ -1,0 +1,23 @@
+{
+  "name": "Deck",
+  "description": "Save and manage links",
+  "version": "0.2.0",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "browser_action": {
+    "default_popup": "./save/index.html"
+  },
+  "chrome_url_overrides": {
+    "newtab": "./manager/index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": ["./manager/css/main.d3925d45.css", "./save/css/main.f2daaa3d.css"]
+    }
+  ],
+  "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
+  "manifest_version": 2
+}

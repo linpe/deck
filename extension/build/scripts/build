@@ -1,0 +1,14 @@
+#!/bin/bash
+
+function build () {
+  [[ -d $1 ]] && rm -r $1;
+
+  mkdir "$1";
+  cp -r "../$1/build/static/css" "$1/"
+  cp -r "../$1/build/static/js" "$1/"
+  cp -r "../$1/build/static/media" "$1/"
+  cp "../$1/build/index.html" "$1/"
+}
+
+build manager
+build save
