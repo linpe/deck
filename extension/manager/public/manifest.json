@@ -1,15 +1,19 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
+  "short_name": "Deck - Manager",
+  "name": "Manage bookmarks",
+  "version": "0.0.0",
+  "permissions": [
+    "storage"
+  ],
+  "browser_action": {
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "matches": ["<all_urls>"],
+      "css": ["./static/css/main.398ebd2e.css"]
     }
   ],
-  "start_url": "./index.html",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
+  "manifest_version": 2
 }
