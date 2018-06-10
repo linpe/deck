@@ -125,7 +125,9 @@ class App extends React.PureComponent {
       });
   };
 
-  saveLink = () => {
+  saveLink = event => {
+    event.preventDefault();
+
     this.setState(prevState => ({
       ...prevState,
       savedLink: {
@@ -136,23 +138,26 @@ class App extends React.PureComponent {
 
     const folder = this.state.savedLink.value || 'Uncategorised';
 
-    firebase
-      .database()
-      .ref(`/bookmarks/${this.state.user}/${folder}`)
-      .push({
-        dateAdded: new Date().toISOString(),
-        href: window.location.href,
-        name: document.title,
-      })
-      .then(() => {
-        this.setState(prevState => ({
-          ...prevState,
-          savedLink: {
-            ...prevState.savedLink,
-            saving: false,
-          },
-        }));
-      });
+    // eslint-disable-next-line
+    chrome.tabs.query({ active: true, currentWindow: true }, ([currentTab]) => {
+      firebase
+        .database()
+        .ref(`/bookmarks/${this.state.user}/${folder}`)
+        .push({
+          dateAdded: new Date().toISOString(),
+          href: currentTab.url,
+          name: currentTab.title,
+        })
+        .then(() => {
+          this.setState(prevState => ({
+            ...prevState,
+            savedLink: {
+              ...prevState.savedLink,
+              saving: false,
+            },
+          }));
+        });
+    });
   };
 
   render() {
