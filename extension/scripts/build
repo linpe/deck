@@ -1,0 +1,19 @@
+#!/bin/bash
+[[ -d build ]] && rm -r build;
+
+mkdir build
+mkdir "build/static";
+mkdir "build/static/css";
+mkdir "build/static/js";
+
+cp "public/manifest.json" "build";
+
+cp -r "manager/build/static/media" "build/static/";
+
+cp "manager/build/static/css/"*.css "build/static/css/";
+cp "manager/build/static/js/"*.js "build/static/js/";
+cp "manager/build/index.html" "build/manager.html";
+
+cp "save/build/static/css/"*.css "build/static/css/";
+cp "save/build/static/js/"*.js "build/static/js/";
+cp "save/build/index.html" "build/save.html";
