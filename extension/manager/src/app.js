@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from 'firebase';
 import Manager from './screens/manager';
+import Placeholder from './screens/placeholder';
 import SignIn from './screens/sign-in';
 import styles from './app.css';
 
@@ -109,7 +110,7 @@ class App extends React.PureComponent {
     if (this.state.activeScreen) {
       Screen = screens[this.state.activeScreen];
     } else {
-      Screen = () => <div>Placeholder</div>;
+      Screen = Placeholder;
     }
 
     return (

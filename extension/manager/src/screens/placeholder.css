@@ -1,0 +1,20 @@
+.header {
+  width: 100%;
+  height: 70px;
+  background-color: var(--colour-light-grey);
+}
+
+.body {
+  min-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 48px 16px;
+}
+
+.title {
+  width: 200px;
+  height: 48px;
+  margin-bottom: 16px;
+  padding: 16px;
+  background-color: var(--colour-light-grey);
+}
