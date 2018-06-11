@@ -1,14 +1,17 @@
 #!/bin/bash
+[[ -d static ]] && rm -r static;
 
-function build () {
-  [[ -d $1 ]] && rm -r $1;
+mkdir "static";
+mkdir "static/css";
+mkdir "static/js";
+mkdir "static/media";
 
-  mkdir "$1";
-  cp -r "../$1/build/static/css" "$1/"
-  cp -r "../$1/build/static/js" "$1/"
-  cp -r "../$1/build/static/media" "$1/"
-  cp "../$1/build/index.html" "$1/"
-}
+cp -r "../save/build/static/media" "static/";
 
-build manager
-build save
+cp "../manager/build/static/css/"*.css "static/css/";
+cp "../manager/build/static/js/"*.js "static/js/";
+cp "../manager/build/index.html" "manager.html";
+
+cp "../save/build/static/css/"*.css "static/css/";
+cp "../save/build/static/js/"*.js "static/js/";
+cp "../save/build/index.html" "save.html";

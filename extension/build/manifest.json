@@ -7,10 +7,10 @@
     "storage"
   ],
   "browser_action": {
-    "default_popup": "./save/index.html"
+    "default_popup": "save.html"
   },
   "chrome_url_overrides": {
-    "newtab": "./manager/index.html"
+    "newtab": "manager.html"
   },
   "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
   "manifest_version": 2
