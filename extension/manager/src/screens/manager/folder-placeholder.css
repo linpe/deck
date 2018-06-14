@@ -1,0 +1,9 @@
+.container {
+  padding: 16px;
+}
+
+.folder {
+  height: 328px;
+  border-radius: 8px;
+  background-color: var(--colour-light-grey);
+}

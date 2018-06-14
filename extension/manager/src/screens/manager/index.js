@@ -118,7 +118,7 @@ class Manager extends React.PureComponent {
           </div>
         </header>
         <div className={styles.body}>
-          <Folders folders={this.state.folders} onFolderClick={this.setActiveFolder} show={!this.state.activeFolder} />
+          <Folders folders={this.state.folders} loading={this.state.loading}onFolderClick={this.setActiveFolder} show={!this.state.activeFolder} />
           <FolderItems
             bookmarks={
               this.state.activeFolder &&

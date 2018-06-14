@@ -21,12 +21,22 @@
   padding: 48px 16px;
 }
 
+.titleContainer {
+  margin-bottom: 16px;
+  padding: 16px;
+}
+
 .title {
   width: 200px;
-  height: 48px;
-  margin: 16px;
+  height: 38px;
   border-radius: 8px;
   background-color: var(--colour-light-grey);
+}
+
+.list {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(4, 25%);
 }
 
 .actionBar {
