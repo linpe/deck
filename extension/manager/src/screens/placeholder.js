@@ -7,6 +7,7 @@ const Placeholder = () => (
     <div className={styles.body}>
       <div className={styles.title} />
     </div>
+    <div className={styles.actionBar} />
   </div>
 );
 

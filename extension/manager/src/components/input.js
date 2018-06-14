@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import styles from './input.css';
 
 function inputClasses(value) {
-  console.log(value.length > 0);
   return classNames(styles.input, {
     [styles.inputFocused]: value.length > 0,
   });

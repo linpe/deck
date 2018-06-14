@@ -41,3 +41,22 @@
   cursor: default;
   color: var(--colour-light-grey);
 }
+
+.addButton {
+  margin-right: 16px;
+}
+
+.add {
+  position: relative;
+}
+
+.popup {
+  position: absolute;
+  bottom: calc(100% + 16px);
+  left: 0;
+	width: 300px;
+  padding: 24px;
+  border-radius: 8px;
+  background-color: var(--colour-white);
+  box-shadow: 0 2px 4px 0 rgba(155, 35, 8, 0.3);
+}

@@ -18,8 +18,14 @@ class Manager extends React.PureComponent {
     activeFolder: undefined,
     bookmarks: {},
     folders: [],
+    linkToAdd: {
+      sending: false,
+      title: '',
+      url: '',
+    },
     loading: false,
     selectedBookmarks: {},
+    showAddPopup: false,
   };
 
   componentDidMount() {
@@ -41,9 +47,46 @@ class Manager extends React.PureComponent {
       });
   };
 
+  addBookmark = event => {
+    event.preventDefault();
+
+    this.setState(prevState => ({
+      ...prevState,
+      linkToAdd: {
+        ...prevState.linkToAdd,
+        sending: true,
+      },
+    }));
+
+    firebase
+      .database()
+      .ref(`/bookmarks/${this.props.user}/${this.state.activeFolder}`)
+      .push({
+        dateAdded: new Date().toISOString(),
+        href: this.state.linkToAdd.url,
+        name: this.state.linkToAdd.title,
+      });
+  };
+
+  onChange = (field, newValue) => {
+    this.setState(prevState => ({
+      ...prevState,
+      linkToAdd: {
+        ...prevState.linkToAdd,
+        [field]: newValue,
+      },
+    }));
+  };
+
   setActiveFolder = folder => {
     this.setState({
       activeFolder: folder,
+    });
+  };
+
+  toggleAddPopup = () => {
+    this.setState({
+      showAddPopup: !this.state.showAddPopup,
     });
   };
 
@@ -89,12 +132,20 @@ class Manager extends React.PureComponent {
             show={!!this.state.activeFolder}
           />
         </div>
+
         <ActionBar
+          addDisabled={!this.state.activeFolder}
+          addSubmitDisabled={!this.state.linkToAdd.title || !this.state.linkToAdd.url}
           deleteDisabled={
             isEmpty(this.state.selectedBookmarks) ||
             !Object.values(this.state.selectedBookmarks).find(selected => selected)
           }
+          linkToAdd={this.state.linkToAdd}
+          onAddBookmark={this.addBookmark}
+          onAddClick={this.toggleAddPopup}
+          onChange={this.onChange}
           onDelete={() => this.props.onDelete(this.state.activeFolder, this.state.selectedBookmarks)}
+          showAddPopup={this.state.showAddPopup}
         />
       </div>
     );
