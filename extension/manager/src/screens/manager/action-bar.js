@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ClickOutside from '../../components/click-outside';
 import PrimaryButton from '../../components/primary-button';
 import Input from '../../components/input';
 import styles from './action-bar.css';
@@ -22,24 +23,26 @@ const ActionBar = ({
           Add new site
         </button>
         {showAddPopup && (
-          <div className={styles.popup}>
-            <form onSubmit={onAddBookmark}>
-              <Input
-                label="Site name"
-                onChange={event => onChange('title', event.target.value)}
-                type="text"
-                value={linkToAdd.title}
-                autoFocus
-              />
-              <Input
-                label="Site url"
-                onChange={event => onChange('url', event.target.value)}
-                type="text"
-                value={linkToAdd.url}
-              />
-              <PrimaryButton disabled={addSubmitDisabled}>Add site</PrimaryButton>
-            </form>
-          </div>
+          <ClickOutside close={onAddClick}>
+            <div className={styles.popup}>
+              <form onSubmit={onAddBookmark}>
+                <Input
+                  label="Site name"
+                  onChange={event => onChange('title', event.target.value)}
+                  type="text"
+                  value={linkToAdd.title}
+                  autoFocus
+                />
+                <Input
+                  label="Site url"
+                  onChange={event => onChange('url', event.target.value)}
+                  type="text"
+                  value={linkToAdd.url}
+                />
+                <PrimaryButton disabled={addSubmitDisabled}>Add site</PrimaryButton>
+              </form>
+            </div>
+          </ClickOutside>
         )}
       </div>
       <button className={styles.button} disabled={deleteDisabled} onClick={onDelete}>

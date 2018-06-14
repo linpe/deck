@@ -81,6 +81,7 @@ class Manager extends React.PureComponent {
   setActiveFolder = folder => {
     this.setState({
       activeFolder: folder,
+      selectedBookmarks: {},
     });
   };
 
