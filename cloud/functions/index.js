@@ -61,9 +61,15 @@ exports.getWebsiteScreenshot = functions.database.ref('/bookmarks/{userId}/{fold
         })
         .then(() => {
           console.log(`Uploaded ${fileName}-thumb.jpg`);
+          return event.data.ref.update({
+            imageUrl: `https://firebasestorage.googleapis.com/v0/b/${
+              functions.config().fire.bucket
+            }/o/${fileName}-thumb.jpg?alt=media&token=${uuid}`,
+          });
+        })
+        .then(() => {
           fs.unlinkSync(tempFilePath);
           fs.unlinkSync(tempThumbPath);
-          return event;
         })
         .catch((error) => {
           console.error('There was an error uploading the image', error);
