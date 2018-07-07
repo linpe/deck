@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import firebase from 'firebase';
 import { format } from 'date-fns';
 import styles from './card.css';
 
@@ -11,33 +10,19 @@ class Card extends React.PureComponent {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     onToggleSelected: PropTypes.func.isRequired,
+    imageUrl: PropTypes.string,
     selected: PropTypes.bool,
   };
 
   static defaultProps = {
-    selected: false,
-  };
-
-  state = {
     imageUrl: undefined,
-  };
-
-  componentDidMount = () => {
-    const storage = firebase.storage();
-    const storageRef = storage.ref();
-
-    storageRef
-      .child(`${this.props.id}-thumb.jpg`)
-      .getDownloadURL()
-      .then(imageUrl => {
-        this.setState({ imageUrl });
-      });
+    selected: false,
   };
 
   render() {
     let backgroundImage;
-    if (this.state.imageUrl) {
-      backgroundImage = `url(${this.state.imageUrl})`;
+    if (this.props.imageUrl) {
+      backgroundImage = `url(${this.props.imageUrl})`;
     }
 
     return (
